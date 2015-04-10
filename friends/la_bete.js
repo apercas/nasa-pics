@@ -8,13 +8,16 @@ var init = function(){
 }
 
 var get_10pics = function() {
-	var _url = 'https://api.data.gov/nasa/planetary/apod?date='+ date.getUTCFullYear() +'-'+ date.getUTCMonth() +'-'+ date.getUTCDate() +'&concept_tags=True&api_key=DEMO_KEY';
+	var _url = 'https://api.data.gov/nasa/planetary/apod?date=2015-04-10&concept_tags=True&api_key=qfZlUQz6uJMKuQxDAQiuSC5G4XZrMq7RaJpC8nH6';
+	console.log('https://jsonp.afeld.me/?url=' + encodeURIComponent(_url))
 	$.ajax({
-	    type : "Get",
-	    url : _url,
-	    dataType : "jsonp",
-    	contentType: "application/json; charset=utf-8",
-	    jsonp : 'jsonp',
+	    type : "GET",
+	    url : 'https://jsonp.afeld.me/?url=' + encodeURIComponent(_url),
+        dataType: "jsonp",
+        crossDomain: true,
+        jsonpCallback: 'MyJSONPCallback',
+        mimetype: "application/text",
+    	contentType: "application/text; charset=utf-8",
 	    async : false,
 	    success : function(data){
 	        console.log(data);},
