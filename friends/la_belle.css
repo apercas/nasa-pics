@@ -42,10 +42,27 @@ h3 {
 	font-size: 10px;
 	width: 60%
 }
+navigation {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.35);
+  z-index: 1;
+  padding: 5px;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+navigation span{
+	position: relative;
+  	right: -4px;
+  	top: -1px;
+}
 img {
 	width: 100%;
 	background-repeat: no-repeat;
 	position: relative;
 	z-index: 0;
-	top: -170px;
 }

@@ -1,12 +1,14 @@
 var date = new Date();
-var sect  = $('section');
+var sect = $('section');
+var diff = 0;
 
 var init = function(){
-	get_10pics(sect);
+	get_pic(sect);
 }
 
-var get_10pics = function() {
-	var _url = 'https://api.data.gov/nasa/planetary/apod?date=' + date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + (date.getUTCDate()) +'&concept_tags=True&api_key=qfZlUQz6uJMKuQxDAQiuSC5G4XZrMq7RaJpC8nH6';
+var get_pic = function() {
+	console.log(diff,'get_pi')
+	var _url = 'https://api.data.gov/nasa/planetary/apod?date=' + date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + (date.getUTCDate() - ~~diff) +'&concept_tags=True&api_key=qfZlUQz6uJMKuQxDAQiuSC5G4XZrMq7RaJpC8nH6';
 	$.ajax({
 	    type : "GET",
 	    url : 'https://jsonp.afeld.me/?url=' + encodeURIComponent(_url),
@@ -19,8 +21,10 @@ var get_10pics = function() {
 	    success : function(data){
 	    	if (!!data.url)
 	        	print_picture(data);
-	        else
-	        	console.log('getting yesterday')//get_10pics();
+	        else{
+	        	diff = diff+1;
+	        	get_pic();
+	        }
 	    },
 	    error : function(httpReq,status,exception){
 	        console.log(status+" "+exception);
@@ -30,8 +34,13 @@ var get_10pics = function() {
 
 var print_picture = function(data) {
 	sect.find('img').attr('src',data.url);
-	sect.find('p').append(data.explanation);
+	sect.find('p').html(data.explanation);
 	sect.find('time').attr('datetime', date).html(date.toLocaleString(0,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
 }
+
+$('navigation').on('click',function(){
+	diff = diff+1;
+	get_pic()
+})
 
 init();
