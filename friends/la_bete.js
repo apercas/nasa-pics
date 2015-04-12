@@ -1,8 +1,8 @@
 var date = new Date();
-var art  = $('article');
+var sect  = $('section');
 
 var init = function(){
-	get_10pics(art);
+	get_10pics(sect);
 }
 
 var get_10pics = function() {
@@ -29,8 +29,9 @@ var get_10pics = function() {
 }
 
 var print_picture = function(data) {
-	art.find('img').attr('src',data.url);
-	art.find('time').attr('datetime', date).html(date.toLocaleString(0,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+	sect.find('img').attr('src',data.url);
+	sect.find('p').append(data.explanation);
+	sect.find('time').attr('datetime', date).html(date.toLocaleString(0,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
 }
 
 init();
