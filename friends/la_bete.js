@@ -7,6 +7,7 @@ var init = function(){
 }
 
 var get_pic = function() {
+	sect.find('img').fadeOut(function(){$('.loader').fadeToggle('slow')});
 	var my_date = {
 		'year' : date.getUTCFullYear(),
 		'month' : date.getUTCMonth(),
@@ -47,8 +48,8 @@ var get_pic = function() {
 }
 
 var print_picture = function(data) {
-	sect.find('img').attr('src',data.url);
-	sect.find('p').html(data.explanation);
+	sect.find('img').attr('src',data.url).fadeIn(function(){$('.loader').fadeToggle('slow')});
+	sect.find('h4').html(data.title);
 	sect.find('time').attr('datetime', date).html(date.toLocaleString(0,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
 }
 
