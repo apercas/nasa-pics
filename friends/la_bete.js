@@ -7,8 +7,22 @@ var init = function(){
 }
 
 var get_pic = function() {
-	console.log(diff,'get_pi')
-	var _url = 'https://api.data.gov/nasa/planetary/apod?date=' + date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + (date.getUTCDate() - ~~diff) +'&concept_tags=True&api_key=qfZlUQz6uJMKuQxDAQiuSC5G4XZrMq7RaJpC8nH6';
+	var my_date = {
+		'year' : date.getUTCFullYear(),
+		'month' : date.getUTCMonth(),
+		'day' : date.getUTCDate() - ~~diff
+	}
+
+	if (my_date.day === 0){
+		my_date.day = 31;
+		my_date.month = my_date.month-1; 
+	}
+	if (my_date.month - 1 === 0){
+		my_date.month = 12;
+		my_date.year = my_date.year-1; 
+	}
+
+	var _url = 'https://api.data.gov/nasa/planetary/apod?date=' + my_date.year + '-' + my_date.month + '-' + my_date.day +'&concept_tags=True&api_key=qfZlUQz6uJMKuQxDAQiuSC5G4XZrMq7RaJpC8nH6';
 	$.ajax({
 	    type : "GET",
 	    url : 'https://jsonp.afeld.me/?url=' + encodeURIComponent(_url),
