@@ -19,25 +19,30 @@ body {
 }
 article {
 	display: flex;
-	align-content: space-between;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	position: absolute;
 	z-index: 1;
-  background-color: rgba(0,0,0,0.01);
+  background-color: rgba(0,0,0,0.1);
   opacity: 0.2;
-  transition: opacity .25s ease-in;
-  transition: background-color .25s ease-in-out;
   width: 100%;
+  -webkit-transition: opacity .5s ease-in, background-color .5s ease-in;
+
 }
 article:hover{
+  -webkit-transition: opacity .5s ease-in, background-color .5s ease-in;
   opacity: 1;
   background-color: rgba(0,0,0,0.7);
+} 
+article header {
+  width: 85%;
+  margin: 0 30px;
 } 
 aside {
 	background-image: url('la_pic/nasa_logo.png');
 	width: 110px;
 	height: 92px;
+  margin-left: 30px;
 }
 
 h1 {
@@ -67,7 +72,7 @@ navigation {
 }
 navigation:hover {
   background-color: rgba(255,255,255,0.35);
-  transition: background-color .25s ease-in-out;
+  -webkit-transition: background-color .25s ease-in-out;
 }
 navigation span{
 	position: relative;
@@ -83,6 +88,8 @@ img {
 	background-repeat: no-repeat;
 	position: absolute;
 	z-index: 0;
+  top: 0; left: 0; bottom: 0; right: 0;
+  margin: auto;
 }
 
 .loader {
